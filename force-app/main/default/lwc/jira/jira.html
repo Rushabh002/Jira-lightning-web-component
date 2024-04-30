@@ -1,0 +1,124 @@
+<template>
+    <div class="slds-page-header slds-page-header_object-home slds-m-bottom_small">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:task" alternative-text="Task"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h1 class="slds-page-header__title slds-truncate" title="Ad-hoc Tasks">Ad-hoc Tasks</h1>
+                </div>
+            </div>
+            <br>
+            <nav class="slds-grid slds-wrap">
+                <ul class="slds-grid slds-grid_align-center">
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Summary</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Board</a>
+                    </li>
+            
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">List</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Calendar</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Timeline</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Forms</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Pages</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                    <a href="#" target="_self">Attachments</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Issues</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Reports</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Shortcuts</a>
+                    </li>
+                    <li class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                        <a href="#" target="_self">Apps</a>
+                    </li>
+                </ul>
+            </nav>
+            <hr>
+    <div class="slds-grid">            
+                <div class="slds-form-element__control">
+                    <input type="text" id="searchField" name="search" placeholder="Search board" class="slds-input">
+                </div>
+            <div class="slds-col">
+            <button class="slds-button slds-button_neutral" onclick={handleShareClick}>Share</button>
+            </div>
+            <div class="slds-col">
+            <button class="slds-button slds-button_neutral" onclick={handleFilterClick}>Filter</button>
+            </div>
+            <div class="slds-col">
+            <button class="slds-button slds-button_neutral" onclick={handleGroupByClick}>Group by: Status</button>
+            </div>
+            <div class="slds-col">
+            <button class="slds-button slds-button_neutral" onclick={handleMoreClick}>More</button>
+            </div>
+        </div>
+        <br>
+        <br>
+
+       <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-3">
+            <div class="task-section">
+                <h2>To Do</h2>
+                <div class="task-list">
+                    <template for:each={todoTasks} for:item="task">
+                        <div key={task.id} class="slds-card">
+                            <!-- Display Task Information -->
+                            <h2>{task.title}</h2>
+                            <h3>{task.id}</h3>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="task-section">
+                <h2>In Progress</h2>
+                <div class="task-list">
+                    <template for:each={inProgressTasks} for:item="task">
+                        <div key={task.id} class="slds-card">
+                            <h2>{task.title}</h2>
+                            <h3>{task.id}</h3>                       
+                         </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="task-section">
+                <h2>Done</h2>
+                <div class="task-list">
+                    <template for:each={doneTasks} for:item="task">
+                        <div key={task.id} class="slds-card">
+                            <h2>{task.title}</h2>
+                            <h3>{task.id}</h3>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+       </div>
+        <div class="slds-grid slds-m-top_medium">
+            <lightning-button
+            onclick={openCreateTicketForm}
+            aria-haspopup="dialog"
+            label="Create Ticket">
+            </lightning-button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,60 @@
+<template>
+        <lightning-modal-header label={label} ></lightning-modal-header>
+        <lightning-modal-body>
+            <form>
+            <div class="form-data">
+                <lightning-combobox label="Issue type" placeholder="Issue type" options={TypeOptions} value={issueType} onchange={handleIssueType} required></lightning-combobox>
+                <a href="https://tntra.atlassian.net/secure/ShowConstantsHelp.jspa?decorator=popup#IssueTypes" style="text-align: center;">Learn about issue types</a> 
+                <hr>
+                <lightning-input label="Title"  value={title} onchange={handletitle} required></lightning-input>
+                <br>
+                <lightning-combobox label="Status" placeholder="Status" options={statusOptions}  value={status} onchange={handleStatus} required></lightning-combobox>
+                <p>This is the issue's initial status upon creation</p>
+                <br>
+                <lightning-textarea label="Summary"  value={summary} onchange={handlesummary} required ></lightning-textarea>
+                <br>
+                <lightning-input type="date" label="Due Date" placeholder="Select Date" value={dueDate} onchange={handleDueDateChange}></lightning-input>
+                <br>
+                <lightning-input-rich-text label="Description" label-visible value={description} onchange={handleDescriptionChange}></lightning-input-rich-text>
+                <br>
+                <lightning-record-picker label="Assignee" placeholder="Search Assignee..." object-api-name="User" value={assignee} onchange={handleAssigneechange} required></lightning-record-picker>     
+                <br>
+                <lightning-combobox label="Priority" placeholder="" options={priorOptions} value={priority} onchange={handlepriority}  required></lightning-combobox>
+                <a href="https://tntra.atlassian.net/secure/ShowConstantsHelp.jspa?decorator=popup#PriorityLevels">Learn about priority levels</a> 
+                <br>
+                <br>
+               <div class="container">
+                <div class="selected-values">
+                    <template for:each={selectedOptions} for:item="option">
+                        <div key={option.value} class="pill">
+                            <span>{option.label}</span>
+                            <button class="close-btn" onclick={removeOption} data-value={option.value}>&times;</button>
+                        </div>
+                    </template>
+                </div>
+        
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="searchInput">Search</label>
+                        <div class="slds-form-element__control">
+                        <input type="text" id="searchInput" class="slds-input" placeholder="Search" 
+                               value={selectedValue} onclick={handleOnClick} oninput={handleSearch} onkeydown={handleKeyDown}/>
+                        </div>
+                    </div> 
+
+                    <div class="dropdown" if:true={showDropdown}>
+                    <template for:each={filteredOptions} for:item="option">
+                        <div key={option.value} class="dropdown-option" onclick={handleOptionClick} data-value={option.value}>
+                            {option.label}
+                        </div>
+                    </template>
+                    </div>
+                </div>
+                <br>
+               </div>
+            </form>
+        </lightning-modal-body>
+        <lightning-modal-footer>
+                <lightning-button label="Cancel" onclick={handleOkay} ></lightning-button>
+                <lightning-button label="Create" onclick={handleCreate} ></lightning-button>
+        </lightning-modal-footer>        
+</template>

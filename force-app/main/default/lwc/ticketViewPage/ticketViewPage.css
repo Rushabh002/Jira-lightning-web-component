@@ -1,0 +1,33 @@
+.jira-ticket {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
+}
+
+.jira-ticket__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.jira-ticket__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.jira-ticket__section {
+    margin-bottom: 1.5rem;
+}
+
+.jira-ticket__field {
+    margin-bottom: 0.5rem;
+}
+
+.jira-ticket__description {
+    white-space: pre-line;
+}
+

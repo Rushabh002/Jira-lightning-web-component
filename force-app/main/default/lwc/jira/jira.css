@@ -1,0 +1,29 @@
+.task-section {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center; /* Align section name in the middle */
+    margin-bottom: 20px;
+}
+
+.section-name {
+    margin-top: 0; /* Remove default margin */
+}
+
+.task-list {
+    padding: 10px;
+}
+
+.slds-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slds-card h2,
+.slds-card h3 {
+    margin: 0;
+    padding: 0;
+}
