@@ -1,35 +1,38 @@
 <template>
-    <lightning-card title="Ticket Details" icon-name="standard:service_appointment">
+    <lightning-card title="Ticket Details" icon-name="standardservice_appointment">
         <div class="jira-ticket">
-            <div class="jira-ticket__header">
-                <div class="jira-ticket__id-container">
-                    <p class="jira-ticket__field"><strong>Id:</strong> {TicketID}</p>
+            <div class="jira-ticket__block">
+                <div class="jira-ticket__left">
+                    <div class="jira-ticket__section">
+                        <p class="jira-ticket__field">{TicketID}</p>
+                    </div>
+                    <div class="jira-ticket__section">
+                        <h1 class="jira-ticket__title">{ticketDetails.Title__c}</h1>
+                        <lightning-file-upload
+                            name="fileUploader"
+                            label="Attach Files"
+                            accept=".jpg,.jpeg,.png"
+                            record-id={recordId}
+                            onuploadfinished={handleUploadFinished}
+                        ></lightning-file-upload>
+                        <br>
+                        <p class="jira-ticket__field"><strong>Issue Type </strong> {ticketDetails.Issue_Type__c}</p>
+                        <p class="jira-ticket__field"><strong>Description </strong></p>
+                        <lightning-formatted-rich-text
+                            class="jira-ticket__description"
+                            value={ticketDetails.Description__c}
+                        ></lightning-formatted-rich-text>
+                    </div>
                 </div>
-            </div>
-            <div class="jira-ticket__content">
-                <div class="jira-ticket__section">
-                    <h3 class="jira-ticket__title">{ticketDetails.Title__c}</h3>
-                    <lightning-file-upload
-                        name="fileUploader"
-                        label="Attach Files"
-                        accept=".jpg,.jpeg,.png"
-                        record-id={recordId}
-                        onuploadfinished={handleUploadFinished}
-                    ></lightning-file-upload>
-                    <p class="jira-ticket__field"><strong>Issue Type:</strong> {ticketDetails.Issue_Type__c}</p>
-                </div>
-                <div class="jira-ticket__section">
-                    <p class="jira-ticket__field"><strong>Description:</strong></p>
-                    <lightning-formatted-rich-text
-                        class="jira-ticket__description"
-                        value={ticketDetails.Description__c}
-                    ></lightning-formatted-rich-text>
-                </div>
-                <div class="jira-ticket__section">
-                    <p class="jira-ticket__field"><strong>Due Date:</strong> {ticketDetails.DueDate__c}</p>
-                    <p class="jira-ticket__field"><strong>Assignee:</strong> {ticketDetails.Assignee__c}</p>
-                    <p class="jira-ticket__field"><strong>Priority:</strong> {ticketDetails.Priority__c}</p>
-                    <p class="jira-ticket__field"><strong>Status:</strong> {ticketDetails.Status__c}</p>
+                <div class="jira-ticket__right">
+                    <lightning-card class="jira-ticket__details-card">
+                        <div class="jira-ticket__section">
+                            <p class="jira-ticket__field"><strong>Due Date</strong> {ticketDetails.DueDate__c}</p>
+                            <p class="jira-ticket__field"><strong>Assignee</strong> {ticketDetails.Assignee__c}</p>
+                            <p class="jira-ticket__field"><strong>Priority</strong> {ticketDetails.Priority__c}</p>
+                            <p class="jira-ticket__field"><strong>Status</strong> {ticketDetails.Status__c}</p>
+                        </div>
+                    </lightning-card>
                 </div>
             </div>
         </div>

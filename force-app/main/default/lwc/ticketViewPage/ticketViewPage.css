@@ -1,16 +1,26 @@
 .jira-ticket {
     padding: 1rem;
-    background-color: #f9f9f9;
     border-radius: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-.jira-ticket__header {
+.jira-ticket__block {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+}
+
+.jira-ticket__left,
+.jira-ticket__right {
+    padding: 1rem;
+}
+
+.jira-ticket__left {
+    flex: 2; /* Set the left side to occupy 2/3 of the space */
+}
+
+.jira-ticket__right {
+    flex: 1; /* Set the right side to occupy 1/3 of the space */
+    border-left: 1px solid #ddd;
 }
 
 .jira-ticket__title {
@@ -25,9 +35,15 @@
 
 .jira-ticket__field {
     margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: white; /* Set background color to white */
 }
 
 .jira-ticket__description {
     white-space: pre-line;
 }
 
+.jira-ticket__details-card {
+    background-color: #282e33; /* Add background color declaration */
+    height: 100%;
+}
