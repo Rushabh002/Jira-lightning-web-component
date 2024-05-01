@@ -72,47 +72,25 @@
         <br>
 
        <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size_1-of-3">
-            <div class="task-section">
-                <h2>To Do</h2>
-                <div class="task-list">
-                    <template for:each={todoTasks} for:item="task">
-                        <div key={task.id} class="slds-card">
-                            <!-- Display Task Information -->
-                            <h2>{task.title}</h2>
-                            <h3>{task.id}</h3>
+        <template if:true={ticketsByStatus}>
+            <template for:each={ticketsByStatus} for:item="statusKey">
+                <div key={statusKey} class="slds-col slds-size_1-of-3">
+                    <div class="task-section">
+                        <h2>{statusKey.status}</h2> <!-- Display status as section header -->
+                        <div class="task-list">
+                            <template for:each={statusKey.tickets} for:item="ticket">
+                                <div key={ticket.Id} class="slds-card">
+                                    <!-- Display Ticket Information -->
+                                    <h3>{ticket.Name}</h3>
+                                    <p>{ticket.Title__c}</p>
+                                </div>
+                            </template>
                         </div>
-                    </template>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="slds-col slds-size_1-of-3">
-            <div class="task-section">
-                <h2>In Progress</h2>
-                <div class="task-list">
-                    <template for:each={inProgressTasks} for:item="task">
-                        <div key={task.id} class="slds-card">
-                            <h2>{task.title}</h2>
-                            <h3>{task.id}</h3>                       
-                         </div>
-                    </template>
-                </div>
-            </div>
-        </div>
-        <div class="slds-col slds-size_1-of-3">
-            <div class="task-section">
-                <h2>Done</h2>
-                <div class="task-list">
-                    <template for:each={doneTasks} for:item="task">
-                        <div key={task.id} class="slds-card">
-                            <h2>{task.title}</h2>
-                            <h3>{task.id}</h3>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </div>
-       </div>
+            </template>
+        </template>
+    </div>
         <div class="slds-grid slds-m-top_medium">
             <lightning-button
             onclick={openCreateTicketForm}

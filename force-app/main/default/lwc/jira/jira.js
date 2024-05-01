@@ -1,11 +1,26 @@
-import { LightningElement, track} from 'lwc';
+import { LightningElement, track,wire} from 'lwc';
 import createTicket from 'c/createTicket'; 
 import ticketViewPage from 'c/ticketViewPage';
 import { NavigationMixin } from 'lightning/navigation';
-
+import getTicketsGroupedByStatus from '@salesforce/apex/TicketController.getTicketsGroupedByStatus';
 export default class Jira extends  NavigationMixin(LightningElement) {
   
+
+ticketsByStatus;    
 result;
+@wire(getTicketsGroupedByStatus)
+wiredTickets({ error, data }) {
+    if (data) {
+        // Assign the response data to ticketsByStatus
+        console.log("ticketsByStatus", data);
+        this.ticketsByStatus = Object.keys(data).map(key => ({ status: key, tickets: data[key] }));
+        console.log("ticketsByStatus DATA", this.ticketsByStatus);
+    } else if (error) {
+        // Handle any errors
+        console.error('Error fetching tickets:', error);
+    }
+}
+
 async openCreateTicketForm() {
         this.result = await  createTicket.open({ label: "Create Ticket" });
         console.log(this.result);
@@ -39,46 +54,4 @@ async openCreateTicketForm() {
             return typeof ticketId === 'string' && ticketId.trim() !== '';
         }
 
-
-    todoTasks = [
-        {
-        title:'AI-ML Avatar Body Generation Approach',
-        id: 'AH-1035'    
-        },
-        {
-            title:'Learning how to create Microservices in Java (Spring Boot)',
-            id: 'AH-106'    
-        },
-        {
-            title:'BPSP-POC',
-            id: 'AH-1040'    
-            }
-    ];
-
-    inProgressTasks = [
-        {
-            title:'Shopify R&D',
-            id: 'AH-105'    
-            },
-            {
-                title:'Freshers Interview',
-                id: 'AH-1035'    
-            }
-    ];
-
-    doneTasks = [
-        {
-            title:'GCP Course',
-            id: 'AH-1035'    
-            },
-            {
-                title:'Setu_Poc',
-                id: 'AH-1035'    
-            },
-            {
-                title:'AI-ML Avatar Body Generation Approach',
-                id: 'AH-1035'    
-                }
-    ];
-    
 }
